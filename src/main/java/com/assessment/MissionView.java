@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MissionView {
 
 	@JsonProperty
-	private Long id;
+	private String id;
 	@JsonProperty
 	private String missionName;
 	@JsonProperty
@@ -20,10 +20,10 @@ public class MissionView {
 	private List<SuperHeroView> superHeroes = new ArrayList<>();
 	
 	
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getMissionName() {

@@ -31,12 +31,12 @@ public class MissionController {
     } 
 	
 	@GetMapping("/{id}")
-	 public ResponseEntity<Object> getMission(@PathVariable final long id){  
+	 public ResponseEntity<Object> getMission(@PathVariable final String id){  
         return missionService.getMissionById(id);  
     }
 	
 	@PutMapping("/{id}/delete")
-    public void delete(@PathVariable final long id) {
+    public void delete(@PathVariable final String id) {
 		missionService.delete(id);
     }
 	

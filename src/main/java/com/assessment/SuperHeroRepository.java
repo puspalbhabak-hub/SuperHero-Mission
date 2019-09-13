@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public interface SuperHeroRepository extends CrudRepository<SuperHero, Long>
+public interface SuperHeroRepository extends CrudRepository<SuperHero, String>
 {
 
 }

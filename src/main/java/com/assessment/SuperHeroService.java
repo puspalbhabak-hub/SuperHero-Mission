@@ -31,13 +31,18 @@ public class SuperHeroService {
 	
 	public ResponseEntity<String> save(final SuperHero superHero)
 	{
+		if(superHero == null) {
+			return new ResponseEntity<>(
+	        		"Null value. Super Hero can't be created", 
+			          HttpStatus.BAD_REQUEST);
+		}
 		superHeroRepository.save(superHero);
 		return new ResponseEntity<>(
 		          "New Super Hero created", 
 		          HttpStatus.OK);
 	}
 	
-	public ResponseEntity<String> deleteMission(final long heroId, final long missionId){
+	public ResponseEntity<String> deleteMission(final String heroId, final String missionId){
 		final Optional<SuperHero> optionalSuperHero = superHeroRepository.findById(heroId);
     	if (!optionalSuperHero.isPresent()) {
 			return new ResponseEntity<>(
@@ -116,7 +121,7 @@ public class SuperHeroService {
 		          HttpStatus.OK);  
 	}
 	
-    public ResponseEntity<Object> getSuperHero(final long id){  
+    public ResponseEntity<Object> getSuperHeroById(final String id){  
     	final Optional<SuperHero> optionalSuperHero = superHeroRepository.findById(id);
     	if (!optionalSuperHero.isPresent()) {
 			return new ResponseEntity<>(
@@ -144,7 +149,7 @@ public class SuperHeroService {
 		return superHeroView;
 	} 
    
-    public ResponseEntity<String> delete(final long id){  
+    public ResponseEntity<String> delete(final String id){  
         superHeroRepository.deleteById(id);  
         return new ResponseEntity<>(
 		          "Super Hero deleted", 
@@ -155,7 +160,7 @@ public class SuperHeroService {
 	public ResponseEntity<String> addMissions(final HeroMissionUtility heroMissionUtility) {
 		
 		final String heroId = heroMissionUtility.getHeroId();
-		final Optional<SuperHero> superHeroOptional = superHeroRepository.findById(Long.parseLong(heroId));
+		final Optional<SuperHero> superHeroOptional = superHeroRepository.findById(heroId);
 		if (!superHeroOptional.isPresent()) {
 			return new ResponseEntity<>(
 			          "Super Hero does not exist", 
@@ -168,7 +173,7 @@ public class SuperHeroService {
 		List<String> missionIds = heroMissionUtility.getMissionsIds();
 		for (final String missionId : missionIds)
 		{
-			final Optional<Mission> missionOptional = missionRepository.findById(Long.parseLong(missionId));
+			final Optional<Mission> missionOptional = missionRepository.findById(missionId);
 			if(missionOptional.isPresent())
 			{
 				final Mission mission = missionOptional.get();

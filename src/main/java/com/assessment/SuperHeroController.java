@@ -31,12 +31,12 @@ public class SuperHeroController {
     } 
 	
 	@GetMapping("/{id}")
-	 public  ResponseEntity<Object> getSuperHeroById(@PathVariable final long id){  
-        return superHeroService.getSuperHero(id);  
+	 public  ResponseEntity<Object> getSuperHeroById(@PathVariable final String id){  
+        return superHeroService.getSuperHeroById(id);  
     }
 	
 	@DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable final long id) {
+    public ResponseEntity<String> delete(@PathVariable final String id) {
 		return superHeroService.delete(id);
     }
 	
@@ -46,7 +46,7 @@ public class SuperHeroController {
 	}
 	
 	@PutMapping("/{heroId}/deleteMission/{missionId}")
-	public ResponseEntity<String> deleteMission(@PathVariable final long heroId, @PathVariable final long missionId) {
+	public ResponseEntity<String> deleteMission(@PathVariable final String heroId, @PathVariable final String missionId) {
 		return superHeroService.deleteMission(heroId, missionId);
 	}
 	

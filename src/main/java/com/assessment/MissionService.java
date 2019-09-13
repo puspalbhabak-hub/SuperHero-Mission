@@ -27,6 +27,11 @@ public class MissionService {
 	
 	public ResponseEntity<String> save(final Mission mission)
 	{
+		if(mission == null) {
+			return new ResponseEntity<>(
+	        		"Null value. Mission can't be created", 
+			          HttpStatus.BAD_REQUEST);
+		}
 		missionRepository.save(mission);
 		return new ResponseEntity<>(
         		"New Mission created", 
@@ -67,7 +72,7 @@ public class MissionService {
 		          HttpStatus.OK);  
     } 
 	
-    public ResponseEntity<Object> getMissionById(final long id){  
+    public ResponseEntity<Object> getMissionById(final String id){  
     	final Optional<Mission> optionalMission = missionRepository.findById(id);
     	if (!optionalMission.isPresent()) {
 			return new ResponseEntity<>(
@@ -95,7 +100,7 @@ public class MissionService {
 		return missionView;
 	} 
    
-    public ResponseEntity<String> delete(final long id){  
+    public ResponseEntity<String> delete(final String id){  
     	final Optional<Mission> optionalMission = missionRepository.findById(id);
     	if (!optionalMission.isPresent()) {
 			return new ResponseEntity<>(

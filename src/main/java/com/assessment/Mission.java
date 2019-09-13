@@ -26,7 +26,7 @@ public class Mission implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	
 	@Column(name = "mission_name")
 	private String missionName;
@@ -62,11 +62,11 @@ public class Mission implements Serializable{
 		return result;
     }
 	
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(final Long id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 

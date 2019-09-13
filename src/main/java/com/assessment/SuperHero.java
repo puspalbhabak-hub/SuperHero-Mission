@@ -28,7 +28,7 @@ public class SuperHero implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -77,11 +77,11 @@ public class SuperHero implements Serializable {
 		missions.add(mission);
 	}
 		
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(final Long id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 
