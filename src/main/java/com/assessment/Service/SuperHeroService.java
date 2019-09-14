@@ -21,6 +21,7 @@ import com.assessment.Utility.HeroMissionUtility;
 import com.assessment.View.MissionView;
 import com.assessment.View.SuperHeroView;
 
+
 @Service
 public class SuperHeroService {
 
@@ -76,7 +77,7 @@ public class SuperHeroService {
     		List<Mission> missions = superHero.getMissions().stream().filter(heroMission -> 
     			heroMission.getId().equals(mission.getId())).collect(Collectors.toList());
     		final Mission superMission = missions.get(0);
-			if(!superMission.isCompleted()) {
+			if(!superMission.getCompleted()) {
     			superHero.removeMission(superMission);
     			superHeroRepository.save(superHero);
     			return new ResponseEntity<>(
@@ -161,7 +162,20 @@ public class SuperHeroService {
 	} 
    
     public ResponseEntity<String> delete(final String id){  
-        superHeroRepository.deleteById(id);  
+    	if(id == null) {
+			return new ResponseEntity<>(
+	        		"Null value. Super Hero can't be deleted", 
+			          HttpStatus.BAD_REQUEST);
+		}
+    	final Optional<SuperHero> optionalSuperHero = superHeroRepository.findById(id);
+    	if (!optionalSuperHero.isPresent()) {
+			return new ResponseEntity<>(
+			          "Super Hero does not exist", 
+			          HttpStatus.BAD_REQUEST);
+		}
+    	final SuperHero superHero = optionalSuperHero.get();
+    	superHero.getMissions().removeAll(superHero.getMissions());
+        superHeroRepository.deleteByHeroId(superHero.getId());  
         return new ResponseEntity<>(
 		          "Super Hero deleted", 
 		          HttpStatus.OK);
@@ -179,24 +193,32 @@ public class SuperHeroService {
 		}
 		
 		final SuperHero superHero = superHeroOptional.get();
-		final List<Mission> missions = new ArrayList<>();
+		final List<Mission> missions = superHero.getMissions();
 		
 		List<String> missionIds = heroMissionUtility.getMissionsIds();
+		if(missionIds == null || missionIds.isEmpty())
+		{
+			return new ResponseEntity<>(
+			          "No Missions exist to add", 
+			          HttpStatus.BAD_REQUEST);
+		}
+		int countOfMissions = 0;
 		for (final String missionId : missionIds)
 		{
 			final Optional<Mission> missionOptional = missionRepository.findById(missionId);
 			if(missionOptional.isPresent())
 			{
 				final Mission mission = missionOptional.get();
-				if(!mission.isDeleted()) {
+				if(!mission.getDeleted()) {
 					missions.add(mission);
+					countOfMissions++;
 				}
 			}
 		}
 		superHero.setMissions(missions);
 		superHeroRepository.save(superHero);
 		return new ResponseEntity<>(
-		          "Missions added", 
+				countOfMissions + " Missions added", 
 		          HttpStatus.OK);
 	}  
 }

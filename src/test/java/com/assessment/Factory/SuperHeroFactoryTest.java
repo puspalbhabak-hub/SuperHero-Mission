@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.assessment.Entity.Mission;
 import com.assessment.Entity.SuperHero;
@@ -25,6 +26,7 @@ import com.assessment.Helper.MissionSuperHeroHelper;
 import com.assessment.View.MissionView;
 import com.assessment.View.SuperHeroView;
 
+@SpringBootTest
 public class SuperHeroFactoryTest {
 
 	private static final String ID = "1";
@@ -81,7 +83,7 @@ public class SuperHeroFactoryTest {
     	final SuperHeroView superHeroView = new SuperHeroView();
     	final Mission mission = superHero.getMissions().get(0);
     	final MissionView missionView = MissionSuperHeroHelper.convertToViewMission(mission);
-    	assertFalse(missionView.isCompleted());
+    	assertFalse(missionView.getCompleted());
     	missionView.setCompleted(true);
     	missionView.setMissionName("New_Mission_1");
     	final List<MissionView> missionViews = new ArrayList<>();
@@ -96,7 +98,7 @@ public class SuperHeroFactoryTest {
 		final List<Mission> missionUpdated = resultMissions.stream().filter(heroMission -> 
 					heroMission.getId().equals(missionViews.get(0).getId())).collect(Collectors.toList());
 		final Mission checkUpdate = missionUpdated.get(0);
-		assertTrue(checkUpdate.isCompleted());
+		assertTrue(checkUpdate.getCompleted());
 		assertEquals(missionView.getMissionName(), checkUpdate.getMissionName());
 		
 		final List<Mission> missionNotUpdated = resultMissions.stream().filter(heroMission -> 

@@ -7,12 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.assessment.Entity.SuperHero;
 import com.assessment.Factory.SuperHeroViewFactory;
 import com.assessment.Helper.MissionSuperHeroHelper;
 import com.assessment.View.SuperHeroView;
 
+@SpringBootTest
 public class SuperHeroViewFactoryTest {
 
 	@InjectMocks

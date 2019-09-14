@@ -9,12 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.assessment.Entity.Mission;
 import com.assessment.Factory.MissionFactory;
 import com.assessment.Helper.MissionSuperHeroHelper;
 import com.assessment.View.MissionView;
 
+@SpringBootTest
 public class MissionFactoryTest {
 	
 	private static final String ID = "1";
@@ -41,18 +43,18 @@ public class MissionFactoryTest {
     	final Mission result = missionFactory.create(missionView);
     	assertEquals(missionView.getId(), result.getId());
     	assertEquals(missionView.getMissionName(), result.getMissionName());
-    	assertEquals(missionView.isDeleted(), result.isDeleted());
-    	assertEquals(missionView.isCompleted(), result.isCompleted());
+    	assertEquals(missionView.getDeleted(), result.getDeleted());
+    	assertEquals(missionView.getCompleted(), result.getCompleted());
     }
     
     @Test
     public void testSetDelete()
     {
     	final Mission mission = MissionSuperHeroHelper.createMission(ID);
-    	assertFalse(mission.isDeleted());
+    	assertFalse(mission.getDeleted());
     	
     	final Mission result = missionFactory.setDelete(mission);
-    	assertTrue(result.isDeleted());
+    	assertTrue(result.getDeleted());
     }
     
     @Test

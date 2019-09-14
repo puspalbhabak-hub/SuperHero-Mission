@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.assessment.Controller.SuperHeroController;
 import com.assessment.Entity.SuperHero;
@@ -17,6 +18,7 @@ import com.assessment.Service.SuperHeroService;
 import com.assessment.Utility.HeroMissionUtility;
 import com.assessment.View.SuperHeroView;
 
+@SpringBootTest
 public class SuperHeroControllerTest {
 
 	private static final String ID2 = "2";

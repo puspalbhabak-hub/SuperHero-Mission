@@ -31,10 +31,10 @@ public class Mission implements Serializable{
 	@Column(name = "mission_name")
 	private String missionName;
 	@Column(name = "completed")
-	private boolean isCompleted;
+	private boolean completed;
 	@Column(name = "deleted")
-	private boolean isDeleted;
-	
+	private boolean deleted;
+
 	@ManyToMany(
 			mappedBy = "missions", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST
 	)
@@ -69,6 +69,22 @@ public class Mission implements Serializable{
 	public void setId(final String id) {
 		this.id = id;
 	}
+	
+	public boolean getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
+	public boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 
 	public String getMissionName() {
 		return missionName;
@@ -76,22 +92,6 @@ public class Mission implements Serializable{
 
 	public void setMissionName(final String missionName) {
 		this.missionName = missionName;
-	}
-
-	public boolean isCompleted() {
-		return isCompleted;
-	}
-
-	public void setCompleted(final boolean isCompleted) {
-		this.isCompleted = isCompleted;
-	}
-
-	public boolean isDeleted() {
-		return isDeleted;
-	}
-
-	public void setDeleted(final boolean isDeleted) {
-		this.isDeleted = isDeleted;
 	}
 
 	public List<SuperHero> getSuperHeroes() {

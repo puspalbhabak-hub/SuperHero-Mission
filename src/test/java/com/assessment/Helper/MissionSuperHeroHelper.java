@@ -13,13 +13,18 @@ public class MissionSuperHeroHelper {
 
 	public static Mission createMission(final String id)
 	{
+		final Mission mission = createMissionWithoutHeroes(id);
+		final SuperHero hero = createHero("2");
+		mission.setSuperHeroes(Arrays.asList(hero));
+		return mission;
+	}
+
+	public static Mission createMissionWithoutHeroes(final String id) {
 		final Mission mission = new Mission();
 		mission.setMissionName("Mission");
 		mission.setId(id);
 		mission.setCompleted(false);
 		mission.setDeleted(false);
-		final SuperHero hero = createHero("2");
-		mission.setSuperHeroes(Arrays.asList(hero));
 		return mission;
 	}
 	
@@ -65,8 +70,8 @@ public class MissionSuperHeroHelper {
 	{
 		final MissionView missionView = new MissionView();
 		missionView.setId(mission.getId());
-		missionView.setCompleted(mission.isCompleted());
-		missionView.setDeleted(mission.isDeleted());
+		missionView.setCompleted(mission.getCompleted());
+		missionView.setDeleted(mission.getDeleted());
 		missionView.setMissionName(mission.getMissionName());
 		return missionView;
 	}

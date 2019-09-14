@@ -18,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -32,6 +33,8 @@ import com.assessment.Service.MissionService;
 import com.assessment.View.MissionView;
 import com.assessment.View.SuperHeroView;
 
+
+@SpringBootTest
 public class MissionServiceTest {
 	
 	@Mock
@@ -118,12 +121,14 @@ public class MissionServiceTest {
 		final Mission mission = MissionSuperHeroHelper.createMission(id);
 		when(missionRepository.findById(id)).thenReturn(Optional.of(mission));
 		when(missionFactory.update(mission, missionView)).thenReturn(mission);
+
 		final ResponseEntity<String> result = missionService.update(missionView);
 		assertNotNull(result);
 		assertEquals("Mission is updated", result.getBody());
 		assertTrue(result.getStatusCode() == HttpStatus.OK);
 		verify(missionRepository, times(1)).findById(id);
 		verify(missionFactory, times(1)).update(mission, missionView);
+		verify(missionRepository, times(1)).save(mission);
 	}
 	
 	@Test
@@ -180,6 +185,7 @@ public class MissionServiceTest {
 		assertNotNull(result);
 		assertEquals("Mission has been soft deleted", result.getBody());
 		assertTrue(result.getStatusCode() == HttpStatus.OK);
+		verify(missionRepository, times(1)).save(mission);
 	}
 	
 
@@ -198,7 +204,8 @@ public class MissionServiceTest {
 		assertNotNull(result);
 		assertTrue(result.getBody().get(0).getClass().equals(MissionView.class));
 		assertTrue(result.getStatusCode() == HttpStatus.OK);
-		
+		verify(missionRepository, times(1)).findAll();
+		verify(missionViewFactory, times(1)).create(mission);
 	}
 	
 }

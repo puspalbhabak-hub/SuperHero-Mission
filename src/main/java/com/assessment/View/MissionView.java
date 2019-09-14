@@ -13,9 +13,9 @@ public class MissionView {
 	@JsonProperty
 	private String missionName;
 	@JsonProperty
-	private boolean isCompleted;
+	private Boolean completed;
 	@JsonProperty
-	private boolean isDeleted;
+	private Boolean deleted;
 	@JsonProperty
 	private List<SuperHeroView> superHeroes = new ArrayList<>();
 	
@@ -32,17 +32,18 @@ public class MissionView {
 	public void setMissionName(String missionName) {
 		this.missionName = missionName;
 	}
-	public boolean isCompleted() {
-		return isCompleted;
+	
+	public Boolean getCompleted() {
+		return completed;
 	}
-	public void setCompleted(boolean isCompleted) {
-		this.isCompleted = isCompleted;
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
 	}
-	public boolean isDeleted() {
-		return isDeleted;
+	public Boolean getDeleted() {
+		return deleted;
 	}
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 	public List<SuperHeroView> getSuperHeroes() {
 		return superHeroes;

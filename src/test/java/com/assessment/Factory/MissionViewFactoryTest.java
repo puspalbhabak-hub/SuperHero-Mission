@@ -7,12 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.assessment.Entity.Mission;
 import com.assessment.Factory.MissionViewFactory;
 import com.assessment.Helper.MissionSuperHeroHelper;
 import com.assessment.View.MissionView;
 
+@SpringBootTest
 public class MissionViewFactoryTest {
 
 	@InjectMocks
@@ -39,7 +41,7 @@ public class MissionViewFactoryTest {
     	
     	assertEquals(mission.getId(), result.getId());
     	assertEquals(mission.getMissionName(), result.getMissionName());
-    	assertEquals(mission.isDeleted(), result.isDeleted());
-    	assertEquals(mission.isCompleted(), result.isCompleted());
+    	assertEquals(mission.getDeleted(), result.getDeleted());
+    	assertEquals(mission.getCompleted(), result.getCompleted());
     }
 }

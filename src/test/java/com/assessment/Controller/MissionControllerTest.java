@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.assessment.Controller.MissionController;
 import com.assessment.Entity.Mission;
@@ -16,6 +17,7 @@ import com.assessment.Helper.MissionSuperHeroHelper;
 import com.assessment.Service.MissionService;
 import com.assessment.View.MissionView;
 
+@SpringBootTest
 public class MissionControllerTest {
 
 	private static final String ID = "1";
