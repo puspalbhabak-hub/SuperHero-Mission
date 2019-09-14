@@ -1,4 +1,7 @@
-package com.assessment;
+package com.assessment.Factory;
+
+import com.assessment.Entity.SuperHero;
+import com.assessment.View.SuperHeroView;
 
 public class SuperHeroViewFactory {
 

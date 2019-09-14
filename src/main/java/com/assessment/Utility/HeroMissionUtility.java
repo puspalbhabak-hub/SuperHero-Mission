@@ -1,4 +1,4 @@
-package com.assessment;
+package com.assessment.Utility;
 
 import java.util.ArrayList;
 import java.util.List;

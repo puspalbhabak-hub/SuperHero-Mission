@@ -1,4 +1,4 @@
-package com.assessment;
+package com.assessment.Factory;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,6 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+
+import com.assessment.Entity.Mission;
+import com.assessment.Factory.MissionViewFactory;
+import com.assessment.Helper.MissionSuperHeroHelper;
+import com.assessment.View.MissionView;
 
 public class MissionViewFactoryTest {
 

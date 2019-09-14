@@ -1,4 +1,4 @@
-package com.assessment;
+package com.assessment.Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

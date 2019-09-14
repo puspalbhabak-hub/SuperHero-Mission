@@ -1,4 +1,4 @@
-package com.assessment;
+package com.assessment.Factory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,6 +16,14 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+
+import com.assessment.Entity.Mission;
+import com.assessment.Entity.SuperHero;
+import com.assessment.Factory.MissionFactory;
+import com.assessment.Factory.SuperHeroFactory;
+import com.assessment.Helper.MissionSuperHeroHelper;
+import com.assessment.View.MissionView;
+import com.assessment.View.SuperHeroView;
 
 public class SuperHeroFactoryTest {
 

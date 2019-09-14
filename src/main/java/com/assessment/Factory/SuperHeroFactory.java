@@ -1,13 +1,18 @@
-package com.assessment;
+package com.assessment.Factory;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.assessment.Entity.Mission;
+import com.assessment.Entity.SuperHero;
+import com.assessment.View.MissionView;
+import com.assessment.View.SuperHeroView;
 
 public class SuperHeroFactory {
 	
 	private MissionFactory missionFactory;
 	
-	SuperHeroFactory()
+	public SuperHeroFactory()
 	{
 		missionFactory = new MissionFactory();
 	}
